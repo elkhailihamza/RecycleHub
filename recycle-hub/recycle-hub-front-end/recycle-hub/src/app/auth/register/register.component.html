@@ -1,1 +1,32 @@
 <p>register works!</p>
+<main class="p-8">
+    <section class="p-4">
+        <div class="p-2 flex justify-center">
+            <form [formGroup]="registerForm" (ngSubmit)="submit()" class="flex flex-col max-w-[400px] min-w-[300px]">
+                <div class="flex items-center space-x-2 mb-2">
+                    <input formControlName="firstName" class="border-b-2 w-full border-b-[#588157] transition-all hover:border-b-[#3A5A40] focus:border-b-[#344E41] outline-none p-2" placeholder="First name" type="text">
+                    <div class="border-1 border-gray-200 h-7 align-self-center"></div>
+                    <input formControlName="lastName" class="border-b-2 w-full border-b-[#588157] transition-all hover:border-b-[#3A5A40] focus:border-b-[#344E41] outline-none p-2" placeholder="Last name" type="text">
+                </div>
+                <div class="mb-2">
+                    <input formControlName="email" class="border-b-2 w-full border-b-[#588157] transition-all hover:border-b-[#3A5A40] focus:border-b-[#344E41] outline-none p-2" placeholder="Email" type="email">
+                </div>
+                <div class="mb-2">
+                    <input formControlName="password" class="border-b-2 w-full border-b-[#588157] transition-all hover:border-b-[#3A5A40] focus:border-b-[#344E41] outline-none p-2" placeholder="Password" type="password">
+                </div>
+                <div formGroupName="dateOfBirth" class="flex space-x-2 mb-2">
+                    <input formControlName="day" class="border-b-2 w-full border-b-[#588157] transition-all hover:border-b-[#3A5A40] focus:border-b-[#344E41] outline-none p-2" placeholder="DD" type="text">
+                    <input formControlName="month" class="border-b-2 w-full border-b-[#588157] transition-all hover:border-b-[#3A5A40] focus:border-b-[#344E41] outline-none p-2" placeholder="MM" type="text">
+                    <input formControlName="year" class="border-b-2 w-full grow-0 border-b-[#588157] transition-all hover:border-b-[#3A5A40] focus:border-b-[#344E41] outline-none p-2" placeholder="YYYY" type="text">
+                </div>
+                <div class="flex space-x-2 mb-2">
+                    <input formControlName="phoneNumber" class="border-b-2 w-full border-b-[#588157] transition-all hover:border-b-[#3A5A40] focus:border-b-[#344E41] outline-none p-2" placeholder="Tel" type="tel">
+                    <input formControlName="homeAddress" class="border-b-2 w-full border-b-[#588157] transition-all hover:border-b-[#3A5A40] focus:border-b-[#344E41] outline-none p-2" placeholder="Address" type="text">
+                </div>
+                <div class="my-4">
+                    <button type="submit" class="w-full bg-[#588157] hover:bg-[#3A5A40] cursor-pointer py-2 transition-all text-white">Register</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>

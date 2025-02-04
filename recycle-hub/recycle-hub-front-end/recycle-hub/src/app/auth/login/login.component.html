@@ -1,1 +1,17 @@
-<p>login works!</p>
+<main class="p-8">
+    <section class="p-4">
+        <div class="p-2 flex justify-center">
+            <form [formGroup]="loginForm" (ngSubmit)="submit()" class="flex flex-col max-w-[400px] min-w-[300px]">
+                <div class="mb-2">
+                    <input formControlName="email" class="border-b-2 w-full border-b-[#588157] transition-all hover:border-b-[#3A5A40] focus:border-b-[#344E41] outline-none p-2" placeholder="Email" type="email">
+                </div>
+                <div class="mb-2">
+                    <input formControlName="password" class="border-b-2 w-full border-b-[#588157] transition-all hover:border-b-[#3A5A40] focus:border-b-[#344E41] outline-none p-2" placeholder="Password" type="password">
+                </div>
+                <div class="my-4">
+                    <button type="submit" class="w-full bg-[#588157] hover:bg-[#3A5A40] cursor-pointer py-2 transition-all text-white">Login</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
