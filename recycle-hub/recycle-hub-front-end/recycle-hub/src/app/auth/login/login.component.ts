@@ -15,7 +15,7 @@ export class LoginComponent {
   constructor(private service: AuthService, private formBuilder: FormBuilder, private router: Router) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required]],
-      password: ['']
+      password: ['', [Validators.required]]
     });
   }
 
@@ -23,7 +23,6 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const data = this.loginForm.value as login;
       this.service.login(data);
-      this.router.navigate(['/user/profile'])
     }
   }
 }

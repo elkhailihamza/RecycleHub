@@ -1,9 +1,9 @@
 import { createReducer, on } from "@ngrx/store"
 import { clearUser, loginUser } from "./action";
-import { user } from "../../domain/interface/auth/user-interface";
+import { User } from "../../domain/interface/auth/user-interface";
 
 export interface UserState {
-    user: user
+    user: User
 }
 
 export const userInitialState: UserState = {

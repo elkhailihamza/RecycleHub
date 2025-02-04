@@ -1,7 +1,7 @@
 import { role } from "../role/role-interface";
 import { register } from "./register-interface";
 
-export interface user {
+export interface User {
     user: register;
     role: role;
 }
