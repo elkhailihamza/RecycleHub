@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { login } from '../../domain/interface/auth/login-interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { login } from '../../domain/interface/auth/login-interface';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private service: AuthService, private formBuilder: FormBuilder) {
+  constructor(private service: AuthService, private formBuilder: FormBuilder, private router: Router) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required]],
       password: ['']
@@ -22,6 +23,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const data = this.loginForm.value as login;
       this.service.login(data);
+      this.router.navigate(['/user/profile'])
     }
   }
 }
