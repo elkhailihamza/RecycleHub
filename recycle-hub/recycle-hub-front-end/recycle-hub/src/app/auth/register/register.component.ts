@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { AbstractControl, AbstractControlOptions, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { register } from '../../domain/interface/auth/register-interface';
 import { Router } from '@angular/router';
+import { register } from '../../core/shared/interface/auth/register-interface';
 
 @Component({
   selector: 'app-register',

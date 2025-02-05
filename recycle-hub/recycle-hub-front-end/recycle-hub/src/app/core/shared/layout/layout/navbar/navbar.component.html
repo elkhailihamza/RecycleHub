@@ -1,0 +1,23 @@
+<nav class="shadow p-4">
+    <div class="flex justify-between">
+        <div class="">
+            <h2>RecycleHub™</h2>
+        </div>
+        <div class="">
+            <ul class="space-x-4">
+                <li class="inline">
+                    <a [routerLink]="'/c/home'" [routerLinkActive]="'bg-[#588157] text-white'" [routerLinkActiveOptions]="{ exact: true }" class="py-1 px-2 rounded transition-all hover:bg-[#588157] hover:text-white">Home</a>
+                </li>
+                <li class="inline">
+                    <a [routerLink]="'/c/waste'" [routerLinkActive]="'bg-[#588157] text-white'" class="py-1 px-2 rounded transition-all hover:bg-[#588157] hover:text-white">Contribute</a>
+                </li>
+                <li class="inline">
+                    <a [routerLink]="'/c/about'" [routerLinkActive]="'bg-[#588157] text-white'" class="py-1 px-2 rounded transition-all hover:bg-[#588157] hover:text-white">About</a>
+                </li>
+                <li class="inline">
+                    <a [routerLink]="'/c/contact-us'" [routerLinkActive]="'bg-[#588157] text-white'" class="py-1 px-2 rounded transition-all hover:bg-[#588157] hover:text-white">Contact-us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

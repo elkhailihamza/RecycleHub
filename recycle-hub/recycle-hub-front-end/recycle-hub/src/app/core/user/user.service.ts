@@ -1,10 +1,10 @@
 import { DestroyRef, Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { UserState } from '../state/user/reducer';
 import { Observable } from 'rxjs';
-import { User } from '../domain/interface/auth/user-interface';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { selectUser } from '../state/user/selector';
+import { User } from '../shared/interface/auth/user-interface';
+import { UserState } from '../shared/state/user/reducer';
+import { selectUser } from '../shared/state/user/selector';
 
 @Injectable({
   providedIn: 'root'

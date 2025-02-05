@@ -3,24 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthComponent } from './auth/auth.component';
 import { StoreModule } from '@ngrx/store';
-import { UserComponent } from './user/user.component';
-import { userReducer } from './state/user/reducer';
-import { LayoutModule } from "./layout/layout.module";
+import { userReducer } from './core/shared/state/user/reducer';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AuthComponent,
-    UserComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     StoreModule.forRoot({ user: userReducer }),
-    LayoutModule
-],
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

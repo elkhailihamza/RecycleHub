@@ -1,14 +1,14 @@
 import { DestroyRef, Injectable, signal, WritableSignal } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { register } from '../domain/interface/auth/register-interface';
-import { User } from '../domain/interface/auth/user-interface';
-import { role } from '../domain/interface/role/role-interface';
-import { login } from '../domain/interface/auth/login-interface';
-import { clearUser, loginUser } from '../state/user/action';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { UserState } from '../state/user/reducer';
 import { Router } from '@angular/router';
-import { selectUser } from '../state/user/selector';
+import { User } from '../core/shared/interface/auth/user-interface';
+import { UserState } from '../core/shared/state/user/reducer';
+import { selectUser } from '../core/shared/state/user/selector';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { clearUser, loginUser } from '../core/shared/state/user/action';
+import { login } from '../core/shared/interface/auth/login-interface';
+import { register } from '../core/shared/interface/auth/register-interface';
+import { role } from '../core/shared/interface/role/role-interface';
 
 @Injectable({
   providedIn: 'root'

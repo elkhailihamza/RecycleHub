@@ -1,9 +1,9 @@
 import { Component, DestroyRef } from '@angular/core';
-import { User } from '../../domain/interface/auth/user-interface';
 import { Store } from '@ngrx/store';
-import { UserState } from '../../state/user/reducer';
 import { UserService } from '../user.service';
 import { ActivatedRoute } from '@angular/router';
+import { User } from '../../shared/interface/auth/user-interface';
+import { UserState } from '../../shared/state/user/reducer';
 
 @Component({
   selector: 'app-profile',
