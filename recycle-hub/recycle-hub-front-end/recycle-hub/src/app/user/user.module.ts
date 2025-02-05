@@ -4,10 +4,10 @@ import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
-    UserRoutingModule
+    UserRoutingModule,
   ]
 })
 export class UserModule { }

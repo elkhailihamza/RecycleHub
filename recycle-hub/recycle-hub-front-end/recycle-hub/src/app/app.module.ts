@@ -7,6 +7,7 @@ import { AuthComponent } from './auth/auth.component';
 import { StoreModule } from '@ngrx/store';
 import { UserComponent } from './user/user.component';
 import { userReducer } from './state/user/reducer';
+import { LayoutModule } from "./layout/layout.module";
 
 @NgModule({
   declarations: [
@@ -17,8 +18,9 @@ import { userReducer } from './state/user/reducer';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({user: userReducer})
-  ],
+    StoreModule.forRoot({ user: userReducer }),
+    LayoutModule
+],
   providers: [],
   bootstrap: [AppComponent]
 })
