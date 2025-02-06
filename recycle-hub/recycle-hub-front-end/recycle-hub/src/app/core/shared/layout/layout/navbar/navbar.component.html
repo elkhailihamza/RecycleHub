@@ -1,21 +1,22 @@
 <nav class="shadow p-4">
-    <div class="flex justify-between">
-        <div class="">
+    <div class="flex justify-between px-2">
+        <div class="flex justify-center items-center space-x-2 select-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#344E41" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="arcs"> <path d="M2.5 2v6h6M21.5 22v-6h-6"/><path d="M22 11.5A10 10 0 0 0 3.2 7.2M2 12.5a10 10 0 0 0 18.8 4.2"/></svg>
             <h2>RecycleHub™</h2>
         </div>
         <div class="">
             <ul class="space-x-4">
                 <li class="inline">
-                    <a [routerLink]="'/c/home'" [routerLinkActive]="'bg-[#588157] text-white'" [routerLinkActiveOptions]="{ exact: true }" class="py-1 px-2 rounded transition-all hover:bg-[#588157] hover:text-white">Home</a>
+                    <a [routerLink]="'/c/home'" [routerLinkActive]="'bg-[#588157] text-white'" [ngClass]="{'hover:bg-[#A3B18A] hover:text-white': !isRouteActive('/c/home')}" [routerLinkActiveOptions]="{ exact: true }" class="py-1 px-2 rounded transition-all">Home</a>
                 </li>
                 <li class="inline">
-                    <a [routerLink]="'/c/waste'" [routerLinkActive]="'bg-[#588157] text-white'" class="py-1 px-2 rounded transition-all hover:bg-[#588157] hover:text-white">Contribute</a>
+                    <a [routerLink]="'/c/waste'" [routerLinkActive]="'bg-[#588157] text-white'" [ngClass]="{'hover:bg-[#A3B18A] hover:text-white': !isRouteActive('/c/waste')}" class="py-1 px-2 rounded transition-all">Contribute</a>
                 </li>
                 <li class="inline">
-                    <a [routerLink]="'/c/about'" [routerLinkActive]="'bg-[#588157] text-white'" class="py-1 px-2 rounded transition-all hover:bg-[#588157] hover:text-white">About</a>
+                    <a [routerLink]="'/c/about'" [routerLinkActive]="'bg-[#588157] text-white'" [ngClass]="{'hover:bg-[#A3B18A] hover:text-white': !isRouteActive('/c/about')}" class="py-1 px-2 rounded transition-all">About</a>
                 </li>
                 <li class="inline">
-                    <a [routerLink]="'/c/contact-us'" [routerLinkActive]="'bg-[#588157] text-white'" class="py-1 px-2 rounded transition-all hover:bg-[#588157] hover:text-white">Contact-us</a>
+                    <a [routerLink]="'/c/contact-us'" [routerLinkActive]="'bg-[#588157] text-white'" [ngClass]="{'hover:bg-[#A3B18A] hover:text-white': !isRouteActive('/c/contact-us')}" class="py-1 px-2 rounded transition-all">Contact-us</a>
                 </li>
             </ul>
         </div>
