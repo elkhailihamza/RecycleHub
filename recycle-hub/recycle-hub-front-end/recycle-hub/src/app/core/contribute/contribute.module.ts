@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RequestComponent } from './request/request.component';
-import { WasteRoutingModule } from './waste-routing.module';
+import { ContributeRoutingModule } from './contribute-routing.module';
 
 @NgModule({
   declarations: [
@@ -9,7 +9,7 @@ import { WasteRoutingModule } from './waste-routing.module';
   ],
   imports: [
     CommonModule,
-    WasteRoutingModule,
+    ContributeRoutingModule,
   ]
 })
-export class WasteModule { }
+export class ContributeModule { }

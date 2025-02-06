@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ContributeComponent } from './contribute.component';
 
-import { WasteComponent } from './waste.component';
-
-describe('WasteComponent', () => {
-  let component: WasteComponent;
-  let fixture: ComponentFixture<WasteComponent>;
+describe('ContributeComponent', () => {
+  let component: ContributeComponent;
+  let fixture: ComponentFixture<ContributeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [WasteComponent]
+      declarations: [ContributeComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(WasteComponent);
+    fixture = TestBed.createComponent(ContributeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

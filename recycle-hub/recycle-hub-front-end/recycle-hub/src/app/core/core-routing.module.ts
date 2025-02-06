@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './user/user.component';
-import { WasteComponent } from './waste/waste.component';
 import { authGuard } from '../auth/auth.guard';
 import { HomeComponent } from './home/home.component';
+import { ContributeComponent } from './contribute/contribute.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
   {
     path: 'home',
     component: HomeComponent
@@ -17,14 +22,14 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: 'waste',
-    component: WasteComponent,
-    loadChildren: () => import('./waste/waste.module').then(m => m.WasteModule),
+    path: 'contribute',
+    component: ContributeComponent,
+    loadChildren: () => import('./contribute/contribute.module').then(m => m.ContributeModule),
   },
   {
     path: '**',
-    redirectTo: 'waste'
-  }
+    redirectTo: 'home'
+  },
 ]
 
 @NgModule({

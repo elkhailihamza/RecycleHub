@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RequestComponent } from './request/request.component';
-import { WasteComponent } from './waste.component';
+import { ContributeComponent } from './contribute.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: WasteComponent
+    component: ContributeComponent
   },
   {
     path: 'request',
@@ -22,4 +22,4 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class WasteRoutingModule { }
+export class ContributeRoutingModule { }

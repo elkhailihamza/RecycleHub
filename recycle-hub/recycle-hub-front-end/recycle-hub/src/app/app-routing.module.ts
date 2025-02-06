@@ -4,9 +4,14 @@ import { CoreComponent } from './core/core.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'c/home',
+    pathMatch: 'full'
+  },
+  {
     path: 'c',
     component: CoreComponent,
-    loadChildren: () => import('./core/core.module').then(m => m.CoreModule)
+    loadChildren: () => import('./core/core.module').then(m => m.CoreModule),
   },
   {
     path: 'auth',
