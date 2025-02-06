@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { CoreRoutingModule } from './core-routing.module';
 import { WasteComponent } from './waste/waste.component';
 import { UserComponent } from './user/user.component';
-import { NavbarComponent } from './shared/layout/layout/navbar/navbar.component';
-import { RouterModule } from '@angular/router';
+import { NavbarComponent } from './shared/layout/navbar/navbar.component';
 import { CoreComponent } from './core.component';
+import { HeaderComponent } from './shared/layout/home/header/header.component';
 import { HomeComponent } from './home/home.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { HomeComponent } from './home/home.component';
     UserComponent,
     NavbarComponent,
     CoreComponent,
-    HomeComponent
+    HomeComponent,
+    HeaderComponent,
   ],
   imports: [
     CoreRoutingModule,
