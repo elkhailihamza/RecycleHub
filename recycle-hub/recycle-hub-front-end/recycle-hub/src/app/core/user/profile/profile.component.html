@@ -1,0 +1,38 @@
+<section class="py-4 px-16">
+    <div class="p-4">
+        <div class="p-4">
+            <h2 class="font-medium text-4xl">My Profile</h2>
+        </div>
+        <div class="flex p-4">
+            <div class="grid md:grid-cols-[2fr_4fr] grid-cols-1 sm:space-x-6 p-4 xl:min-w-[70em] md:min-w-[50em] max-w-[85em]">
+                <div class="p-6 text-center">
+                    <div class="rounded-full">
+                        <img class="rounded-full content-fit w-full h-auto" src="https://picsum.photos/300/300?random=1" alt="Profile Image">
+                    </div>
+                    <div class="grid gap-4 mt-6">
+                        <div class="flex justify-evenly">
+                            <h2 class="text-md font-medium">{{user.user.firstName}} {{user.user.lastName}}</h2>
+                        </div>
+                        <div>
+                            <h2 class="text-md font-medium">{{user.user.dateOfBirth}}</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="col-start-1 col-span-1 p-4">
+                            <h2 class="text-xl font-medium italic">Email:<br/><span class="text-xl">{{user.user.email}}</span></h2>
+                        </div>
+                        <div class="col-span-1 p-4">
+                            <h2 class="text-xl font-medium italic">Phone:<br/><span class="text-xl">{{user.user.phoneNumber}}</span></h2>
+                        </div>
+                        <div class="col-span-1 p-4">
+                            <h2 class="text-xl font-medium italic">Address:<br/><span class="text-xl">{{user.user.homeAddress}}</span></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

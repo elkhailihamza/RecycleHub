@@ -1,0 +1,52 @@
+<section class="p-8">
+    <div class="p-4">
+        <div class="p-2">
+            <h2 class="lg:text-2xl text-xl">Request</h2>
+        </div>
+        <div class="flex justify-center p-2">
+            <form [formGroup]="requestForm" (ngSubmit)="onSubmit()" class="p-2 max-w-[500px] min-w-[400px]">
+                <div>
+                    <select formControlName="recycleMaterial" name="recycling-material" id="recycling-material">
+                        <option value="" selected disabled hidden>--Select material to be collected--</option>
+                        <option value="plastic">Plastic</option>
+                        <option value="glass">Glass</option>
+                        <option value="paper">Paper</option>
+                        <option value="metal">Metal</option>
+                    </select>
+                </div>
+                <div class="w-full h-[100px]">
+                    <label for="recycling-pictures" class="h-full w-full">
+                        <div class="border h-full">test</div>
+                    </label>
+                    <input formControlName="recyclingPictures" type="file" id="recycling-pictures" class="sr-only">
+                </div>
+                <div>
+                    <input formControlName="estimatedWeight" type="text" placeholder="Estimated weight (minimum 1kg required)">
+                </div>
+                <div>
+                    <input formControlName="addressCollect" type="text" placeholder="Address to collect" />
+                </div>
+                <div>
+                    <div>
+                        <input formControlName="dateCollect" type="date" placeholder="Date to collect" />
+                    </div>
+                    <div *ngIf="requestForm.get('dateCollect')?.value">
+                        <span>Select time</span>
+                        <select formControlName="timeCollect">
+                            <option selected disabled hidden>--Select time to collect--</option>
+                            <option value="{{time.key}}" [disabled]="time.value" *ngFor="let time of getAvailableTimeSlots | keyvalue">
+                                {{time.key}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <textarea formControlName="extraNotes" class="" placeholder="Extra notes (max 275 characters)"></textarea>
+                </div>
+                <div>
+                    <button type="submit" class="border">submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
