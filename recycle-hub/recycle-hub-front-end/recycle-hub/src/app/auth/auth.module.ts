@@ -5,11 +5,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthService } from './auth.service';
+import { DbServiceImpl } from '../core/shared/db/db-impl.service';
+import { AuthComponent } from './auth.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AuthComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +20,9 @@ import { AuthService } from './auth.service';
     AuthRoutingModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    AuthRoutingModule,
+    DbServiceImpl
   ]
 })
 export class AuthModule { }

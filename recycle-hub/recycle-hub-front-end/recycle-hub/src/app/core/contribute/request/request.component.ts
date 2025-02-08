@@ -64,7 +64,6 @@ export class RequestComponent {
   onSubmit(): void {
     if (this.requestForm.valid) {
       const data = this.requestForm.value as request;
-      data.id = 1;
       this.service.storeRequest(data);
     }
   }

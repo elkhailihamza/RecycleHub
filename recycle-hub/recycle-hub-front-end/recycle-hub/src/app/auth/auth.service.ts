@@ -9,6 +9,7 @@ import { clearUser, loginUser } from '../core/shared/state/user/action';
 import { login } from '../core/shared/interface/auth/login-interface';
 import { register } from '../core/shared/interface/auth/register-interface';
 import { role } from '../core/shared/interface/role/role-interface';
+import { DbServiceImpl } from '../core/shared/db/db-impl.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ import { role } from '../core/shared/interface/role/role-interface';
 export class AuthService {
   userSignal: WritableSignal<User | null> = signal(null);
 
-  constructor(private store: Store<UserState>, private destroyRef: DestroyRef, private router: Router) {
+  constructor(private store: Store<UserState>, private destroyRef: DestroyRef, private router: Router, private db: DbServiceImpl<User>) {
     this.store.pipe(select(selectUser))
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(usr => {
@@ -24,6 +25,7 @@ export class AuthService {
           this.userSignal.set(usr);
         }
     });
+    this.db.begin('user');
   }
 
   get user(): WritableSignal<User | null> {
@@ -33,7 +35,7 @@ export class AuthService {
   register = (data: register) => {
     if (!this.userAlreadyExists(data.email)) {
       const user: User = {user: data, role: role.Beneficial}
-      localStorage.setItem("user: "+data.email, JSON.stringify(user));
+      this.db.insert(user);
       return;
     }
     console.error("user "+ data.email +" already exists!")
@@ -42,10 +44,10 @@ export class AuthService {
   login = (data: login) => {
     if (this.userAlreadyExists(data.email)) {
       const user = this.getUserByEmail(data.email);
-      const parsedUser = JSON.parse(user!) as User;
+      const parsedUser = user as User;
       if (data.password === parsedUser.user.password) {
         this.store.dispatch(loginUser({user: parsedUser}));
-        this.router.navigate(["/user/profile"]);
+        this.router.navigate(["/c/home"]);
       }
     }
   }
@@ -59,10 +61,10 @@ export class AuthService {
   }
 
   private userAlreadyExists(email: string) {
-    return localStorage.getItem("user: "+email) !== null;
+    return this.db.getEntityWith('user.email', email) !== null;
   }
 
   private getUserByEmail(email:string) {
-    return localStorage.getItem("user: "+email);
+    return this.db.getEntityWith('user.email', email);
   }
 }

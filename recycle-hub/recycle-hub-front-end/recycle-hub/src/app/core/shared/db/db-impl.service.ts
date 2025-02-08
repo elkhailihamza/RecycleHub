@@ -62,5 +62,27 @@ export class DbServiceImpl<Entity> implements DbService<Entity> {
     const currentItems = this.getAll;
     const entity = currentItems.find((item: any) => item && item.id === id);
     return entity || null;
-  }  
+  }
+
+  getEntityWith(key: keyof Entity | string, value: string) {
+    const currentItems = this.getAll;
+
+    const entity = currentItems.find((item: Entity) => {
+      if (!item) return false;
+      if (typeof key === 'string' && key.includes('.')) {
+        const keys = key.split('.');
+        let currentVal: any = item;
+        for(const k of keys) {
+          if (currentVal && currentVal[k] !== undefined) {
+            currentVal = currentVal[k];
+          } else {
+            return false;
+          }
+        }
+        return currentVal === value;
+      } 
+      return item[key as keyof Entity] === value;
+    });
+    return entity || null;
+  }
 }

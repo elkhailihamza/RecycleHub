@@ -13,6 +13,11 @@ export class ContributeService {
   }
 
   storeRequest(data: request): void {
+    data.status = 0;
+    if (this.db.getEntityWith('dateCollect', data.dateCollect) && this.db.getEntityWith('timeCollect', data.timeCollect)) {
+      console.error("Request with date already exists!");
+      return;
+    }
     this.db.insert(data);
   }
 
