@@ -8,6 +8,7 @@ export interface UserState {
 
 export const userInitialState: UserState = {
     user: {
+        id: 0,
         user: {
             firstName: '',
             lastName: '',

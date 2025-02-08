@@ -8,6 +8,7 @@ export interface request {
     timeCollect: string;
     extraNotes?: string;
     status: requestStatus;
+    userId: number;
 }
 
 export enum requestMaterial {

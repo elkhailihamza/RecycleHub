@@ -34,7 +34,7 @@ export class AuthService {
 
   register = (data: register) => {
     if (!this.userAlreadyExists(data.email)) {
-      const user: User = {user: data, role: role.Beneficial}
+      const user: User = {id: 0, user: data, role: role.Beneficial}
       this.db.insert(user);
       return;
     }
