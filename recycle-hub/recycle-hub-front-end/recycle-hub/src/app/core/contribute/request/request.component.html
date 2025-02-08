@@ -1,52 +1,95 @@
 <section class="p-8">
     <div class="p-4">
-        <div class="p-2">
-            <h2 class="lg:text-2xl text-xl">Request</h2>
-        </div>
-        <div class="flex justify-center p-2">
-            <form [formGroup]="requestForm" (ngSubmit)="onSubmit()" class="p-2 max-w-[500px] min-w-[400px]">
-                <div>
-                    <select formControlName="recycleMaterial" name="recycling-material" id="recycling-material">
-                        <option value="" selected disabled hidden>--Select material to be collected--</option>
-                        <option value="plastic">Plastic</option>
-                        <option value="glass">Glass</option>
-                        <option value="paper">Paper</option>
-                        <option value="metal">Metal</option>
-                    </select>
+      <div class="p-2">
+        <h2 class="lg:text-2xl text-xl">Request</h2>
+      </div>
+      <div class="flex justify-center p-2">
+        <form
+          [formGroup]="requestForm"
+          (ngSubmit)="onSubmit()"
+          class="p-2 max-w-[500px] w-full"
+        >
+          <div class="p-2 grid gap-4"> <!-- Use gap for spacing -->
+            <div>
+              <select
+                class="p-2 w-full hover:bg-gray-50 transition-all cursor-pointer border-b-2 border-[#344E41] outline-none"
+                formControlName="recycleMaterial"
+                name="recycling-material"
+                id="recycling-material"
+              >
+                <option value="" selected disabled hidden>--Select material to be collected--</option>
+                <option value="plastic">Plastic</option>
+                <option value="glass">Glass</option>
+                <option value="paper">Paper</option>
+                <option value="metal">Metal</option>
+              </select>
+            </div>
+            <div class="h-[100px]">
+              <label for="recycling-pictures" class="h-full w-full">
+                <div
+                  class="h-full flex justify-center items-center hover:bg-gray-50 transition-all cursor-pointer rounded-lg border-2 border-[#344E41]"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#344E41" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="arcs"><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 8l-5-5-5 5M12 4.2v10.3"/></svg>
                 </div>
-                <div class="w-full h-[100px]">
-                    <label for="recycling-pictures" class="h-full w-full">
-                        <div class="border h-full">test</div>
-                    </label>
-                    <input formControlName="recyclingPictures" type="file" id="recycling-pictures" class="sr-only">
-                </div>
-                <div>
-                    <input formControlName="estimatedWeight" type="text" placeholder="Estimated weight (minimum 1kg required)">
-                </div>
-                <div>
-                    <input formControlName="addressCollect" type="text" placeholder="Address to collect" />
-                </div>
-                <div>
-                    <div>
-                        <input formControlName="dateCollect" type="date" placeholder="Date to collect" />
-                    </div>
-                    <div *ngIf="requestForm.get('dateCollect')?.value">
-                        <span>Select time</span>
-                        <select formControlName="timeCollect">
-                            <option selected disabled hidden>--Select time to collect--</option>
-                            <option value="{{time.key}}" [disabled]="time.value" *ngFor="let time of getAvailableTimeSlots | keyvalue">
-                                {{time.key}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div>
-                    <textarea formControlName="extraNotes" class="" placeholder="Extra notes (max 275 characters)"></textarea>
-                </div>
-                <div>
-                    <button type="submit" class="border">request</button>
-                </div>
-            </form>
-        </div>
+              </label>
+              <input formControlName="recyclingPictures" type="file" id="recycling-pictures" class="sr-only">
+            </div>
+            <div>
+              <input
+                class="p-2 w-full border-b-2 border-[#344E41] outline-none"
+                formControlName="estimatedWeight"
+                type="text"
+                placeholder="Estimated weight (minimum 1kg required)"
+              />
+            </div>
+            <div>
+              <input
+                class="p-2 w-full border-b-2 border-[#344E41] outline-none"
+                formControlName="addressCollect"
+                type="text"
+                placeholder="Address to collect"
+              />
+            </div>
+            <div>
+              <input
+                class="p-2 w-full border-b-2 border-[#344E41] outline-none"
+                formControlName="dateCollect"
+                type="date"
+              />
+              <div *ngIf="requestForm.get('dateCollect')?.value" class="mt-2">
+                <select
+                  class="p-2 w-full hover:bg-gray-50 transition-all cursor-pointer border-b-2 border-[#344E41] outline-none"
+                  formControlName="timeCollect"
+                >
+                  <option value="" selected disabled hidden>--Select time to collect--</option>
+                  <option
+                    value="{{time.key}}"
+                    [disabled]="time.value"
+                    *ngFor="let time of getAvailableTimeSlots | keyvalue"
+                  >
+                    {{time.key}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="h-[100px]">
+              <textarea
+                class="w-full h-full resize-none border-b-2 border-[#344E41] outline-none"
+                formControlName="extraNotes"
+                placeholder="Extra notes (max 275 characters)"
+              ></textarea>
+            </div>
+            <div>
+              <button
+                type="submit"
+                class="w-full py-2 bg-[#344E41] text-white rounded-lg hover:bg-[#456A50] transition cursor-pointer transition-all"
+              >
+                Request
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-</section>
+  </section>
+  
