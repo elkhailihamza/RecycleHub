@@ -1,57 +1,61 @@
 import { Injectable } from '@angular/core';
-import { request } from '../shared/interface/contribute/request-interface';
-import { DbServiceImpl } from '../shared/db/db-impl.service';
-import { Store } from '@ngrx/store';
 import { AuthService } from '../../auth/auth.service';
-import { User } from '../shared/interface/auth/user-interface';
+import { Router } from '@angular/router';
+import { Request, requestStatus } from '../shared/interface/contribute/request-interface';
+import { RequestService } from '../shared/db/db-service/request.service';
+import { UserService } from '../shared/db/db-service/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContributeService {
-  private readonly entityName: string = "request";
 
-  constructor(private db: DbServiceImpl<request>, private auth: AuthService) { 
-    this.db.begin(this.entityName);
-  }
+  constructor(private db: RequestService, private dbUser: UserService, private auth: AuthService, private router: Router) { }
 
-  storeRequest(data: request): void {
-    data.status = 0;
+  storeRequest(data: Request): void {
     if (this.db.getEntityWith('dateCollect', data.dateCollect) && this.db.getEntityWith('timeCollect', data.timeCollect)) {
       console.error("Request with date already exists!");
       return;
     }
 
-    const currentUser = this.auth.user() as User;
-    const userId = currentUser.id;
+    // const currentUser = this.auth.user() as User;
+    // const userId = 0; change to currentUser.id when completing project because state management sucks for auth
+    const userRequests = this.db.getEntitiesWith('user.id', String(0)); // change to userId
 
-    const userRequests = this.db.getItemsWithSameDetail('userId', String(userId));
+    if (this.db.getAll.length > 0 && userRequests && userRequests.length > 0) {
 
-    const pendingUserRequests = userRequests.filter(req => {
-      return req.status === 0;
-    })
-
-    if (pendingUserRequests.length > 0) {
-      if (pendingUserRequests.length > 3) {
-        console.error("This user already has 3 pending requests!");
-        return;
-      }
-  
-      const fullWeight = pendingUserRequests.forEach(req => {
-        return req.estimatedWeight;
+      const pendingUserRequests = userRequests.filter(req => {
+        return req.status === 0;
       })
-  
-      if ((fullWeight! + data.estimatedWeight) > 10000) {
-        console.error("Weight surpasses 10Kg on all three pending requests!");
-        return;
+
+      if (pendingUserRequests.length > 0) {
+        if (pendingUserRequests.length > 3) {
+          console.error("This user already has 3 pending requests!");
+          return;
+        }
+    
+        const fullWeight = pendingUserRequests.forEach(req => {
+          return req.estimatedWeight;
+        })
+    
+        if ((fullWeight! + data.estimatedWeight) > 10000) {
+          console.error("Weight surpasses 10Kg on all three pending requests!");
+          return;
+        }
       }
     }
-
-    data.userId = userId;
+    
+    data.status = requestStatus.pending;
+    data.user = this.dbUser.getById(1)!;
     this.db.insert(data);
+    this.router.navigate(['/c/contribute']);
   }
 
   getAllRequestsWithSameDetail(detail: string) {
     return this.db.getItemsWithSameDetail('dateCollect', detail);
+  }
+
+  getAllRequests(): Request[] {
+    return this.db.getAll;
   }
 }

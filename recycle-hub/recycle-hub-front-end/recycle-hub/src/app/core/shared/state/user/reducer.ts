@@ -20,6 +20,7 @@ export const userInitialState: UserState = {
             profilePicture: '',
         },
         role: 0,
+        points: 0,
     }
 }
 

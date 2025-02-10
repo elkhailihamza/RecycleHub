@@ -1,0 +1,58 @@
+<section class="p-8">
+    <div class="p-4">
+        <div class="p-2 grid grid-rows-[1fr_3fr_1fr]">
+            <div class="flex justify-between mb-2">
+                <h2 class="italic text-2xl font-medium">Selected request id 1</h2>
+                <p class="text-md">{{request.dateCollect+'/'+request.timeCollect}}</p>
+            </div>
+            <div class="mb-2 p-8">
+                <h2 class="text-2xl">Info: </h2>
+                <div class="flex justify-center">
+                    <div class="grid">
+                        <p>Id: {{request.id}}</p>
+                        <p>Recycle Material: {{request.recycleMaterial}}</p>
+                        <p>Estimated Weight: {{request.estimatedWeight}}</p>
+                        <p>Extra notes: {{request.extraNotes}}</p>
+                        <p>Status: {{getStatusString(request.status)}}</p>
+                        <p>By user: {{request.user.user!.firstName+' '+request.user.user!.lastName}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-end items-center gap-4">
+                <form [formGroup]="collectForm" (ngSubmit)="submit()" class="flex justify-end items-center gap-4" *ngIf="request.status !== 2; else alreadyVerified">
+                    <div class="flex items-center gap-2">
+                        <input formControlName="correctWeight" type="checkbox" class="w-5 h-5 border-transparent border-b-2" id="weight">
+                        <label for="material_type">
+                            <p class="text-md">Verify correct weight</p>
+                        </label>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input formControlName="correctMaterial" type="checkbox" class="w-5 h-5 border-transparent border-b-2" id="material_type">
+                        <label for="material_type">
+                            <p class="text-md">Verify material type</p>
+                        </label>
+                    </div>
+                    <select formControlName="selectedStatus" class="p-2 h-10 w-40 hover:bg-gray-50 transition-all cursor-pointer border-b-2 border-[#344E41] outline-none">
+                        <option selected hidden disabled>{{getStatusString(request.status)}}</option>
+                        <option value="pending">Pending</option>
+                        <option value="busy">Busy</option>
+                        <option value="in_progress">In progress</option>
+                        <option value="validated">Validated</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                    <button
+                    type="submit"
+                    class="py-2 px-4 bg-[#344E41] text-white rounded-lg hover:bg-[#456A50] transition cursor-pointer transition-all"
+                  >
+                    Change
+                  </button>
+                </form>
+                <ng-template #alreadyVerified>
+                    <p class="text-stone-400 text-xl italic">
+                        This request is already verified
+                    </p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</section>

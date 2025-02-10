@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { request } from '../../shared/interface/contribute/request-interface';
+import { Request } from '../../shared/interface/contribute/request-interface';
 import { ContributeService } from '../contribute.service';
 
 @Component({
@@ -27,7 +27,7 @@ export class RequestComponent {
   ngOnInit(): void {
     this.getRequestDate?.valueChanges.subscribe((value: string) => {
       if (this.requestForm.get('dateCollect')?.valid) {
-        const matchingItems = this.service.getAllRequestsWithSameDetail(value) as request[];
+        const matchingItems = this.service.getAllRequestsWithSameDetail(value) as Request[];
         const excludedTimes: string[] = [];
         matchingItems.forEach(item => {
           excludedTimes.push(item.timeCollect);
@@ -63,7 +63,7 @@ export class RequestComponent {
 
   onSubmit(): void {
     if (this.requestForm.valid) {
-      const data = this.requestForm.value as request;
+      const data = this.requestForm.value as Request;
       this.service.storeRequest(data);
     }
   }

@@ -5,4 +5,5 @@ export interface User {
     id: number;
     user: register;
     role: role;
+    points: number;
 }

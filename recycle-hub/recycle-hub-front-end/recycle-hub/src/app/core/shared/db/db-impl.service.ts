@@ -27,6 +27,8 @@ export class DbServiceImpl<Entity> implements DbService<Entity> {
 
     localStorage.setItem(this.entityName, JSON.stringify(currentData));
 
+    console.log(entity)
+
     return entity;
   }
 
@@ -84,5 +86,27 @@ export class DbServiceImpl<Entity> implements DbService<Entity> {
       return item[key as keyof Entity] === value;
     });
     return entity || null;
+  }
+
+  getEntitiesWith(key: keyof Entity | string, value: string) {
+    const currentItems = this.getAll;
+
+    const entities = currentItems.filter((item: Entity) => {
+        if (!item) return false;
+        if (typeof key === 'string' && key.includes('.')) {
+            const keys = key.split('.');
+            let currentVal: any = item;
+            for (const k of keys) {
+                if (currentVal && currentVal[k] !== undefined) {
+                    currentVal = currentVal[k];
+                } else {
+                    return false;
+                }
+            }
+            return currentVal === value;
+        } 
+        return item[key as keyof Entity] === value;
+    });
+    return entities.length > 0 ? entities : null;
   }
 }

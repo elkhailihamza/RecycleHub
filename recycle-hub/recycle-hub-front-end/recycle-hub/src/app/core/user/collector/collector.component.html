@@ -1,0 +1,39 @@
+<section class="p-8">
+    <div class="p-4">
+        <ul class="p-2 flex flex-wrap gap-4" *ngIf="requests.length > 0; else noRequests">
+          <li class="h-[225px] w-[200px] hover:shadow-md hover:bg-gray-50 border-t-[#588157] border-gray-200 border-b-2 border-r-2 border-l-2 border-t-4 transition-all cursor-pointer" *ngFor="let req of requests">
+            <a [routerLink]="''+req.id">
+                <div class="p-4 grid grid-rows-[1fr_3fr_1fr] w-full h-full">
+                    <div class="text-stone-500 select-none">
+                        {{req.id}}) {{req.recycleMaterial+" "+req.estimatedWeight}} g(s)
+                    </div>
+                    <div class="grid">
+                        <div class="text-2xl text-center border-b-2 border-stone-200 relative">
+                            <p class="absolute w-full h-full top-0 text-stone-300 italic z-1 font-thin">ADDRESS</p>
+                            <p class="z-99 relative font-medium">{{req.addressCollect}}</p>
+                        </div>
+                        <div class="flex items-center" *ngIf="req.extraNotes !== null && req.extraNotes !== ''; else noExtraNotes">
+                            {{req.extraNotes}}
+                        </div>
+                        <ng-template #noExtraNotes>
+                            <p>No extra notes added</p>
+                        </ng-template>
+                    </div>
+                    <div>
+                        <div class="text-center">
+                            <p>{{req.dateCollect}}</p>
+                            <p>{{req.timeCollect}}</p>
+                        </div>
+                        <div class="text-stone-500 select-none text-end">
+                            {{ req.user.user.firstName+" #"+req.user.id}}
+                        </div>
+                    </div>
+                </div>
+            </a>
+          </li>
+        </ul>
+        <ng-template #noRequests>
+          <p>No requests available.</p>
+        </ng-template>
+    </div>    
+</section>

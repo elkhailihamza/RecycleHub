@@ -1,4 +1,6 @@
-export interface request {
+import { User } from "../auth/user-interface";
+
+export interface Request {
     id: number;
     recycleMaterial: requestMaterial;
     recyclingPictures?: [];
@@ -8,7 +10,7 @@ export interface request {
     timeCollect: string;
     extraNotes?: string;
     status: requestStatus;
-    userId: number;
+    user: User;
 }
 
 export enum requestMaterial {
